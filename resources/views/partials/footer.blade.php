@@ -1,3 +1,3 @@
 <footer class="footer text-center">
-    © <?= date('Y'); ?> By Omer Memes
+    © <?= date('Y'); ?> All rights reserved - OMS
 </footer>
