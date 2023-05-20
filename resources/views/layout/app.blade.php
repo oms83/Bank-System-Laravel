@@ -76,7 +76,7 @@
 
                             <li class="nav-item dropdown">
                                 <a class="pt-4 text-gray-400 text-decoration-none dropdown-toggle" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} 
                                 </a>
                                 &nbsp;&nbsp;
 

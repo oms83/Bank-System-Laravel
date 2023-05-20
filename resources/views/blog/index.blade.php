@@ -16,6 +16,8 @@
         <h1 style="font-size: 5rem; font-weight: 600; line-height: 1.2;" class="text-center">All Posts</h1>
     </div>
 
+    {{-- buraya ek bir şart eklenecek sadece "admin"  post ekleyebilir   --}}
+    {{-- سيتم إضافة شرط بحيث يمكن للمسؤول فقط إضافة منشورات جديدة   --}}
     @if (Auth::check())
         <div class="container sm:grid gap-5 mx-auto py-20 px-5">
             <a href="{{route('blog.create')}}" class="bg-green-700 text-decoration-none  text-gray-100 py-3 px-4 rounded-lg uppercase font-bold place-self-start" >Add New Post</a>
@@ -30,7 +32,7 @@
             <div>
                 <h2 class="text-gray-700 font-bold text-4xl py-5">{{$post->title}}</h2>
                 <span>
-                    By: <span class="text-gray-500 italic">{{$post->user->name}}</span>
+                    By: <span class="text-gray-500 italic">{{$post->user->first_name}} {{$post->user->last_name}}</span>
                     on <span class="text-gray-500 italic">{{date('d-m-Y', strtotime($post->updated_at))}}</span>
                         <p class="text-l text-gray-700 py-8 leading-6">
                             {{$post->description}}

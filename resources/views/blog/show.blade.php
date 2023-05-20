@@ -15,7 +15,7 @@
     <div class="container text-center pt-15 pb-5">
         <h1 style="font-size: 5rem; font-weight: 600; line-height: 1.2;">{{$post->title}}</h1>
         <div class="mt-2">
-                By: <span class="text-gray-500 italic">{{$post->user->name}}</span>
+                By: <span class="text-gray-500 italic">{{$post->user->first_name}} {{$post->user->last_name}}</span>
                 on <span class="text-gray-500 italic">{{date('d-m-Y', strtotime($post->updated_at))}}</span>
         </div>
     </div>
