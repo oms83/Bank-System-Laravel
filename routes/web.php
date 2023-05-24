@@ -47,4 +47,4 @@ Route::get('/profile',[ProfileController::class,'index'])->name('profile');
 // //  str, array
 Route::get('/', [PagesController::class, 'index'])->name('index');
 
-Route::get('/accounts',[BankAccountController::class,'index']);
+Route::get('/accounts',[BankAccountController::class,'index'])->name('accounts');
