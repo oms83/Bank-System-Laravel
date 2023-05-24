@@ -7,6 +7,7 @@ use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,4 @@ Route::get('/profile',[ProfileController::class,'index'])->name('profile');
 Route::get('/', [PagesController::class, 'index'])->name('index');
 
 Route::get('/accounts',[BankAccountController::class,'index'])->name('accounts');
+Route::get('/cards',[CardController::class,'index'])->name('cards');
