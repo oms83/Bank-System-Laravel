@@ -110,4 +110,83 @@
         </div>
 </div>
 
+
+<!-- Add New Bank Account -->
+    <div class="modal fade" id="addBankAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <form method="POST" action="">
+                @csrf
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Bank Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-5">
+
+                        <div class="form-group">
+                            <label for="transactionCodeInput">Account Name</label>
+                            <input type="text" class="form-control" id="transactionCodeInput" aria-describedby="transactionCodeInputHelp" name="name" required value="Omer Memes" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transactionNarrationInput">Account Number</label>
+                            <input type="text" class="form-control" id="transactionNarrationInput" aria-describedby="transactionNarrationInputHelp" name="number" required value="56546543" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Available Balance</label>
+                            <input type="number" class="form-control" name="available_balance" required value="1000" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ledger Balance</label>
+                            <input type="number" class="form-control" name="ledger_balance" required value="550" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usersFormControlSelect">User</label>
+                            <select class="form-control" id="usersControlSelect" name="user_id">
+
+                                <option value="1"> a </option>
+                                <option value="2"> b </option>
+                                <option value="3"> c </option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usersFormControlSelect">Bank Name</label>
+                            <select class="form-control" id="banksControlSelect" name="bank_id">
+
+                                <option value="1"> n </option>
+                                <option value="2"> m </option>
+                                <option value="3"> l </option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usersFormControlSelect">Bank Branch Location</label>
+                            <select class="form-control" id="bankLocationsControlSelect" name="bank_location_id">
+                                <option value="1"> x </option>
+                                <option value="2"> y </option>
+                                <option value="3"> z </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i> Save </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
 @endsection
