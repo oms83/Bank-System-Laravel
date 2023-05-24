@@ -6,6 +6,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BankAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,5 @@ Route::get('/profile',[ProfileController::class,'index'])->name('profile');
 
 // //  str, array
 Route::get('/', [PagesController::class, 'index'])->name('index');
+
+Route::get('/accounts',[BankAccountController::class,'index']);
