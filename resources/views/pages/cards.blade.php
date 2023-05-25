@@ -170,5 +170,171 @@
         </div>
     </div>
 </div>
+<!--Add-->
+<div class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <form method="POST" action="">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Card</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-5">
+
+
+
+
+                    {{-- Card Name and Number --}}
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="transactionCodeInput">Card Owner's Name</label>
+                                <input type="text" class="form-control" id="transactionCodeInput" aria-describedby="transactionCodeInputHelp" name="name" required value="" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="transactionNarrationInput">Card Number</label>
+                                <input type="text" class="form-control" id="transactionNarrationInput" aria-describedby="transactionNarrationInputHelp" name="number" required value="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {{-- Card expiry month,year, cvv and zip code --}}
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label for="usersFormControlSelect">Month</label>
+                                <input type="text" class="form-control" id="transactionNarrationInput" aria-describedby="transactionNarrationInputHelp" name="month" required value="" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label for="usersFormControlSelect">Year</label>
+                                <input type="text" class="form-control" id="transactionNarrationInput" aria-describedby="transactionNarrationInputHelp" name="year" required value="" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label for="usersFormControlSelect">CVV</label>
+                                <input type="text" class="form-control" id="transactionNarrationInput" aria-describedby="transactionNarrationInputHelp" name="cvv" required value="" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label for="usersFormControlSelect">Zip Code</label>
+                                <input type="text" class="form-control" id="transactionNarrationInput" aria-describedby="transactionNarrationInputHelp" name="zip_code" required value="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {{-- Card Billing Address --}}
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Billing Address</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="billing_address"></textarea>
+                    </div>
+
+                    {{-- Card Balance --}}
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label>Available Balance</label>
+                                <input type="number" class="form-control" name="available_balance" required value="6353" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label>Ledger Balance</label>
+                                <input type="number" class="form-control" name="ledger_balance" required value="222" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    {{-- Card Type and Currncies --}}
+                    <div class="row">
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="usersFormControlSelect">Card Type</label>
+                                    <select class="form-control" id="cardsControlSelect" name="card_type_id">
+
+                                        <option value="1"> master card </option>
+                                        <option value="1"> paypal card </option>
+                                        <option value="1"> vize card </option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="usersFormControlSelect">Card Currency</label>
+                                    <select class="form-control" id="currenciesControlSelect" name="currency_id">
+
+                                            <option value="1"> TL </option>
+                                            <option value="2"> TL </option>
+                                            <option value="4"> TL </option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        {{-- User and Status --}}
+                        <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="usersFormControlSelect">User</label>
+                                        <select class="form-control" id="usersControlSelect" name="user_id">
+                                            <option value="1"> Omer MEMES - Admin </option>
+                                            <option value="2"> Ali MEMES - Customer </option>
+                                            <option value="3"> Osman MEMES - Customer </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="usersFormControlSelect">Status</label>
+                                        <select class="form-control" id="usersControlSelect" name="status">
+                                            <option value="good"> Good </option>
+                                            <option value="frozen"> Frozen </option>
+                                            <option value="terminated"> Terminated </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i> Save </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 
 @endsection
