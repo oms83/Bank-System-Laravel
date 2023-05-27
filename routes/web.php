@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,6 @@ Route::get('/accounts',[BankAccountController::class,'index'])->name('accounts')
 Route::get('/cards',[CardController::class,'index'])->name('cards');
 
 Route::get('/transections',[BankAccountController::class,'all_transactions'])->name('all_transactions');
+
+
+Route::get('/settings',[SettingsController::class,'index'])->name('settings');
