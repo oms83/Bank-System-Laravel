@@ -50,3 +50,5 @@ Route::get('/', [PagesController::class, 'index'])->name('index');
 
 Route::get('/accounts',[BankAccountController::class,'index'])->name('accounts');
 Route::get('/cards',[CardController::class,'index'])->name('cards');
+
+Route::get('/transections',[BankAccountController::class,'all_transactions'])->name('all_transactions');

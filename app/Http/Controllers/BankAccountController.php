@@ -17,9 +17,9 @@ class BankAccountController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function all_transactions()
     {
-        //
+        return view('pages.transections');
     }
 
     /**
