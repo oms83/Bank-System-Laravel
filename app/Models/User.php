@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, hasRoles, Notifiable, SoftDeletes;
+
 
     /**
      * The attributes that are mass assignable.
@@ -42,14 +45,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    final public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
 
+    
     public function post()
     {
         // 0..* 
         return $this->hasMany(Post::class);
+    }
+    
+    final public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }

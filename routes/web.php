@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,5 @@ Route::get('/transections',[BankAccountController::class,'all_transactions'])->n
 
 
 Route::get('/settings',[SettingsController::class,'index'])->name('settings');
+
+Route::get('/users',[UserController::class,'index'])->name('users');
