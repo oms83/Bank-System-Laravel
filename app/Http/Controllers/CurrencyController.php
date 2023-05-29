@@ -1,8 +1,17 @@
+<?php
+
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Currency;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model
-public function index(Request $request){
+
+
+class CurrencyController extends Controller
+{
+    //
+
+    public function index(Request $request){
         $currencies = Currency::paginate(20);
         return view('pages.currencies', compact('currencies'));
     }
@@ -47,3 +56,8 @@ public function index(Request $request){
         }
 
     }
+
+
+
+
+}
