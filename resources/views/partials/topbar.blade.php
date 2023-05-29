@@ -38,7 +38,7 @@
                     </ul>
                     <ul class="pt-4 navbar-nav float-right">
                         {{-- <li class="nav-item"> <a class="nav-link"><i class="fa fa-bell"></i></a> </li> --}}
-                        <li class="nav-item"> <a href="#" class="nav-link"><i class="fa fa-envelope"></i></a> </li>
+                        <li class="nav-item"> <a href="{{route('inbox')}}" class="nav-link"><i class="fa fa-envelope"></i></a> </li>
                     </ul>
                     <!-- Right side toggle and nav items -->
                     <ul class="pt-4 navbar-nav float-right">
@@ -47,7 +47,7 @@
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="{{ url('') }}/assets/images/users/oms.jpeg" alt="user" width="60" height="60"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="{{route('profile')}}"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="#"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                                <a class="dropdown-item" href="{{route('inbox')}}"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                 <a class="dropdown-item" href="{{route('logout')}}"><i class="ti-power-off m-r-5 m-l-5"></i> Logout</a>
                             </div>
                         </li>

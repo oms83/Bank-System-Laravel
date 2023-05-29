@@ -11,6 +11,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,6 @@ Route::post('/user/update/{id}',[UserController::class,'update'])->name('edit_us
 
 Route::get('/currencies',[CurrencyController::class,'index'])->name('currencies');
 Route::post('/currency/save',[CurrencyController::class,'store'])->name('save_currency');
+
+
+Route::get('/inbox',[MessageController::class,'index'])->name('inbox');
