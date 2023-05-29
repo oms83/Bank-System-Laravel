@@ -30,6 +30,9 @@ return new class extends Migration
             $table->timestamps();
             // تجميد البيانات
             $table->softDeletes();
+
+            $table->foreign('country_id')->references('id')->on('countries');
+
         });
     }
 

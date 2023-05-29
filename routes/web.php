@@ -59,3 +59,5 @@ Route::get('/transections',[BankAccountController::class,'all_transactions'])->n
 Route::get('/settings',[SettingsController::class,'index'])->name('settings');
 
 Route::get('/users',[UserController::class,'index'])->name('users');
+Route::post('/user/save',[UserController::class,'store'])->name('save_user');
+Route::post('/user/update/{id}',[UserController::class,'update'])->name('edit_user');
