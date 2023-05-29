@@ -1,5 +1,17 @@
+<?php
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-public function run()
+
+class CurrenciesTableSeeder extends Seeder
+{
+
+    /**
+     * Auto generated seed file
+     *
+     * @return void
+     */
+    public function run()
     {
 
 
@@ -42,3 +54,4 @@ public function run()
 
 
     }
+}
