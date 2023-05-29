@@ -10,6 +10,7 @@ use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +62,6 @@ Route::get('/settings',[SettingsController::class,'index'])->name('settings');
 Route::get('/users',[UserController::class,'index'])->name('users');
 Route::post('/user/save',[UserController::class,'store'])->name('save_user');
 Route::post('/user/update/{id}',[UserController::class,'update'])->name('edit_user');
+
+Route::get('/currencies',[CurrencyController::class,'index'])->name('currencies');
+Route::post('/currency/save',[CurrencyController::class,'store'])->name('save_currency');
