@@ -15,8 +15,8 @@
     <div class="container text-center pt-15 pb-5">
         <h1 style="font-size: 5rem; font-weight: 600; line-height: 1.2;">{{$post->title}}</h1>
         <div class="mt-2">
-                By: <span class="text-gray-500 italic">{{$post->user->first_name}} {{$post->user->last_name}}</span>
-                on <span class="text-gray-500 italic">{{date('d-m-Y', strtotime($post->updated_at))}}</span>
+                By: <span class="text-teal-500 italic">{{$post->user->first_name}} {{$post->user->last_name}}</span>
+                on <span class="text-teal-500 italic">{{date('d-m-Y', strtotime($post->updated_at))}}</span>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
         
         @if(Auth::user() && Auth::user()->id == $post->user_id)
                 <a href="/blog/{{$post->slug}}/edit" 
-                    class="bg-gray-700 
+                    class="bg-teal-700 
                     text-decoration-none 
                     text-gray-300 py-2 pt-2 pb-2 px-3 
                     rounded-lg font-bold" >

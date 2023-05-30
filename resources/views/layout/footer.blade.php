@@ -1,4 +1,4 @@
-<footer class="bg-gray-700 py-15 mt-20" >
+<footer class="bg-teal-800 py-15 mt-20" >
     <div class="container mx-auto flex justify-between items-center ">
         <div>
             <ul>

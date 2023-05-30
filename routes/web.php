@@ -12,6 +12,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\CardTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,5 @@ Route::post('/currency/save',[CurrencyController::class,'store'])->name('save_cu
 
 
 Route::get('/inbox',[MessageController::class,'index'])->name('inbox');
+
+Route::get('/card_types',[CardTypeController::class,'index'])->name('card_types');

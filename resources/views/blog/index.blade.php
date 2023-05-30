@@ -20,24 +20,24 @@
     {{-- سيتم إضافة شرط بحيث يمكن للمسؤول فقط إضافة منشورات جديدة   --}}
     @if (Auth::check())
         <div class="container sm:grid gap-5 mx-auto py-20 px-5">
-            <a href="{{route('blog.create')}}" class="bg-green-700 text-decoration-none  text-gray-100 py-3 px-4 rounded-lg uppercase font-bold place-self-start" >Add New Post</a>
+            <a href="{{route('blog.create')}}" class="bg-green-700 text-decoration-none  text-teal-100 py-3 px-4 rounded-lg uppercase font-bold place-self-start" >Add New Post</a>
         </div>  
     @endif
 
     @foreach ($posts as $post)
-        <div class="container sm:grid grid-cols-2 gap-15 mx-auto py-20 px-5 border-b border-gray-300">
+        <div class="container sm:grid grid-cols-2 gap-15 mx-auto py-20 px-5 border-b border-teal-300">
             <div>
                 <img class="rounded" width="500" height="400" src="{{$post->image_path}}" alt="">
             </div>
             <div>
-                <h2 class="text-gray-700 font-bold text-4xl py-5">{{$post->title}}</h2>
+                <h2 class="text-teal-700 font-bold text-4xl py-5">{{$post->title}}</h2>
                 <span>
-                    By: <span class="text-gray-500 italic">{{$post->user->first_name}} {{$post->user->last_name}}</span>
-                    on <span class="text-gray-500 italic">{{date('d-m-Y', strtotime($post->updated_at))}}</span>
-                        <p class="text-l text-gray-700 py-8 leading-6">
+                    By: <span class="text-teal-500 italic">{{$post->user->first_name}} {{$post->user->last_name}}</span>
+                    on <span class="text-teal-500 italic">{{date('d-m-Y', strtotime($post->updated_at))}}</span>
+                        <p class="text-l text-teal-700 py-8 leading-6">
                             {{$post->description}}
                         </p>
-                        <a href="/blog/{{$post->slug}}" class="bg-gray-700 text-decoration-none text-gray-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
+                        <a href="/blog/{{$post->slug}}" class="bg-teal-700 text-decoration-none text-gray-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
                 </span>
             </div>
             
@@ -45,35 +45,35 @@
         
         @endforeach
 
-        {{-- <div class="container sm:grid grid-cols-2 gap-15 mx-auto py-20 px-5 border-b border-gray-500">
+        {{-- <div class="container sm:grid grid-cols-2 gap-15 mx-auto py-20 px-5 border-b border-teal-500">
             <div>
                 <img class="rounded" src="https://picsum.photos/500/400.webp" alt="">
             </div>
             <div>
-                <h2 class="text-gray-700 font-bold text-4xl py-5">How to create a blog with Laravel</h2>
+                <h2 class="text-teal-700 font-bold text-4xl py-5">How to create a blog with Laravel</h2>
                 <span>
-                    By: <span class="text-gray-500 italic">Nour D. Homsi</span>
-                        <p class="text-l text-gray-700 py-8 leading-6">
+                    By: <span class="text-teal-500 italic">Nour D. Homsi</span>
+                        <p class="text-l text-teal-700 py-8 leading-6">
                             Keep in mind, some Vapor features, PHP features, and PHP extensions may not work as expected when ruming
                         </p>
-                        <a href="/" class="bg-gray-700 text-decoration-none text-gray-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
+                        <a href="/" class="bg-teal-700 text-decoration-none text-teal-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
                 </span>
             </div>
             
         </div>
 
-    <div class="container sm:grid grid-cols-2 gap-15 mx-auto py-20 px-5 border-b border-gray-300">
+    <div class="container sm:grid grid-cols-2 gap-15 mx-auto py-20 px-5 border-b border-teal-300">
         <div>
             <img class="rounded" src="https://picsum.photos/500/400.webp" alt="">
         </div>
         <div>
-            <h2 class="text-gray-700 font-bold text-4xl py-5">How to create a blog with Laravel</h2>
+            <h2 class="text-teal-700 font-bold text-4xl py-5">How to create a blog with Laravel</h2>
             <span>
-                By: <span class="text-gray-500 italic">Nour D. Homsi</span>
-                    <p class="text-l text-gray-700 py-8 leading-6">
+                By: <span class="text-teal-500 italic">Nour D. Homsi</span>
+                    <p class="text-l text-teal-700 py-8 leading-6">
                         Keep in mind, some Vapor features, PHP features, and PHP extensions may not work as expected when ruming
                     </p>
-                    <a href="/" class="bg-gray-700 text-decoration-none text-gray-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
+                    <a href="/" class="bg-teal-700 text-decoration-none text-teal-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
             </span>
         </div>
         

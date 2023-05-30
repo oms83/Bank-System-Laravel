@@ -35,13 +35,13 @@
                 obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
             </p>
 
-            <a href="/" class="bg-gray-700 text-decoration-none text-gray-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
+            <a href="/" class="bg-teal-800 text-decoration-none text-gray-300 py-3 px-4 rounded-lg font-bold" >Read More</a>
         </div>
         
     </div>
 
     <!-- Blog Categories -->
-    <div class="text-center p-15 bg-gray-700 text-gray-100">
+    <div class="text-center p-15 bg-teal-800 text-gray-100">
         <h2 class="py-4">Blog Categories</h2>
         
         <div class="container mx-auto pt-10 sm: grid grid-cols-4">
