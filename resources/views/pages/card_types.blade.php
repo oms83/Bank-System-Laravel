@@ -69,4 +69,89 @@
     </div>
 </div>
      
+ 
+
+<!-- Add CardTyp Modal -->
+<div class="modal fade" id="addCardTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+        <form action="" method="POST" enctype="multipart/form-data" >
+            
+            @csrf
+
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Card Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+                
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" value="master-card" required />
+                </div>
+                <div class="form-group">
+                        <label>Style Class</label>
+                    <input type="text" class="form-control" name="style" value="bg-master-card" required />
+                </div>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="newImageFile" name="picture" required accept="image/*">
+                    <label class="custom-file-label" for="customFile">Choose Image</label>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<!-- Edit CardTyp Modal -->
+<div class="modal fade" id="editCardTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+    
+            <form action="" method="POST" id="editCardType" enctype="multipart/form-data">
+        
+                @csrf
+    
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Card Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" value="master-card" required id="update_name"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Style Class</label>
+                        <input type="text" class="form-control" name="style" value="{{ old('style') }}" required id="update_style" />
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="newImageFile" name="picture" required accept="image/*">
+                        <label class="custom-file-label" for="customFile">Choose Image</label>
+                    </div>
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </div>
+            </form>
+    
+        </div>
+    </div>
 @endsection
