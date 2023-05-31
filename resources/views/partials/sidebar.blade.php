@@ -18,7 +18,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('users')}}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Users</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('currencies')}}" aria-expanded="false"><i class="mdi mdi-currency-usd"></i><span class="hide-menu">Currencies</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('card_types')}}" aria-expanded="false"><i class="mdi mdi-cards"></i><span class="hide-menu">Card Types</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-bank"></i><span class="hide-menu">Banks</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('banks')}}" aria-expanded="false"><i class="mdi mdi-bank"></i><span class="hide-menu">Banks</span></a></li>
 
                     </ul>
 
