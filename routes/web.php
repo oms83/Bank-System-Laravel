@@ -14,6 +14,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CardTypeController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\BankLocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,5 @@ Route::get('/inbox',[MessageController::class,'index'])->name('inbox');
 
 Route::get('/card_types',[CardTypeController::class,'index'])->name('card_types');
 Route::get('/banks',[BankController::class,'index'])->name('banks');
+
+Route::get('/bank/locations',[BankLocationController::class,'index'])->name('bank_locations');
