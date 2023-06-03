@@ -15,6 +15,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CardTypeController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BankLocationController;
+use App\Http\Controllers\CardTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,3 +78,5 @@ Route::get('/card_types',[CardTypeController::class,'index'])->name('card_types'
 Route::get('/banks',[BankController::class,'index'])->name('banks');
 
 Route::get('/bank/locations',[BankLocationController::class,'index'])->name('bank_locations');
+
+Route::get('/card/transactions/{id}',[CardTransactionController::class,'show'])->name('card_transactions');
