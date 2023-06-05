@@ -14,6 +14,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card" style="border-radius:10px !important">
                     {{-- Transaction Table --}}
+
                     <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
@@ -38,29 +39,60 @@
                                             </thead>
                                             <tbody>
 
+                                                @foreach ($banks as $bank)
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>ziraat bankasi</td>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $bank->name }}</td>
                                                         <td>
-                                                                <img src="https://www.ziraatbank.com.tr/SiteAssets/images/fb-logo.jpg" alt="ziraat_name" class="rounded-circle" width="50" />
+                                                            @if($bank->picture)
+                                                                <img src="{{ $bank->picture }}" alt="{{ $bank->name }}" class="rounded-circle" width="50" />
+                                                            @endif
                                                         </td>
-                                                        <td>TRZB</td>
+                                                        <td>{{ $bank->code }}</td>
                                                         <td>
-                                                                31/05/2023
+                                                            @if( !empty($bank->created_at) )
+                                                                {{ $bank->created_at->diffForHumans() }}
+                                                            @else
+                                                                --/--/----
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                                    <button type="button" class="btn btn-xs btn-info edit-bank" value="1"> <i class="fa fa-edit"></i> </button>
-                                                                    <a href="#" class="btn btn-xs btn-danger"> <i class="fa fa-trash"></i> </a>
-                                                                    <a href="#" class="btn btn-xs btn-primary"> <i class="fa fa-undo"></i> </a>
-                                                                    <a href="{{route('bank_locations')}}" class="btn btn-xs btn-primary"> <i class="fa fa-eye"></i> Locations</a>
+
+                                                            @can('edit-bank')
+                                                                <button type="button" class="btn btn-xs btn-info edit-bank" value="{{ $loop->index }}"> <i class="fa fa-edit"></i> </button>
+                                                            @endcan
+
+                                                            @if( empty($bank->deleted_at) )
+                                                                @can('delete-bank')
+                                                                    <a href="{{ route('delete_bank', $bank->id ) }}" class="btn btn-xs btn-danger"> <i class="fa fa-trash"></i> </a>
+                                                                @endcan
+                                                            @else
+                                                                @can('restore-bank')
+                                                                    <a href="{{ route('restore_bank', $bank->id ) }}" class="btn btn-xs btn-primary"> <i class="fa fa-undo"></i> </a>
+                                                                @endcan
+                                                            @endif
+
+                                                            @can('list-bank-locations')
+                                                                <a href="{{ route('bank_locations', $bank->id ) }}" class="btn btn-xs btn-primary"> <i class="fa fa-eye"></i> Locations</a>
+                                                            @endcan
+
                                                         </td>
                                                     </tr>
-                                                    {{-- <tr>
+                                                @endforeach
+
+                                                @if(count($banks) == 0)
+                                                    <tr>
                                                         <td colspan="5" class="span4 text-center text-muted"> No Bank Found</td>
-                                                    </tr> --}}
+                                                    </tr>
+                                                @endif
+
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    <div class="float-right">
+                                            {{ $banks->links() }}
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +110,7 @@
 <div class="modal fade" id="addBankModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
 
-        <form action="" method="POST" enctype="multipart/form-data" >
+        <form action="{{ route('save_bank') }}" method="POST" enctype="multipart/form-data" >
 
             @csrf
 
@@ -93,11 +125,11 @@
 
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="name" value="Ziraat Bankasi" required />
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required />
                 </div>
                 <div class="form-group">
                         <label>Code</label>
-                    <input type="text" class="form-control" name="code" value="TRZB" required />
+                    <input type="text" class="form-control" name="code" value="{{ old('code') }}" required />
                 </div>
 
                 <div class="custom-file">
@@ -136,11 +168,11 @@
 
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="Ziraat Bankasi" required id="update_name"/>
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" required id="update_name"/>
                     </div>
                     <div class="form-group">
                         <label>Code</label>
-                        <input type="text" class="form-control" name="code" value="TRZB" required id="update_code" />
+                        <input type="text" class="form-control" name="code" value="{{ old('code') }}" required id="update_code" />
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="newImageFile" name="picture" required accept="image/*">
@@ -164,6 +196,7 @@
 <script>
 
 
+var banks = {!! json_encode($banks->toArray(), JSON_HEX_TAG) !!};
 
 
 $(".edit-bank").click(function(){

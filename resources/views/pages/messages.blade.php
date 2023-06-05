@@ -48,18 +48,34 @@
                             <table class="table sortable">
                                 <tbody>
 
-                                            <tr class="table-active row" onclick="window.location='1';">
+                                    @foreach ($messages as $message)
+                                        @if($message->status == "unread")
+                                            <tr class="table-light row" onclick="window.location='{{ route('read_message',$message->id) }}';">
+                                        @else
+                                            <tr class="table-active row" onclick="window.location='{{ route('read_message',$message->id) }}';">
+                                        @endif
                                             {{-- <th scope="row">{{ $loop->iteration }}</th> --}}
-                                            <td class="col-2">Omer MEMES</td>
-                                            <td class="col-8">Hello Omer</span> </td>
+                                            <td class="col-2">{{ $message->sender->first_name }}</td>
+                                            <td class="col-8">{!! $message->messagePreview !!}</span> </td>
+                                            <td class="text-muted col-2" title="{{ $message->created_at->format('l jS \\of F Y h:i:s A') }}">
+                                                {{ $message->created_at->diffForHumans() }}
                                             </td>
+
                                         </tr>
-                                        {{-- <tr>
+                                    @endforeach
+
+                                    @if(count($messages) == 0)
+                                        <tr>
                                             <td colspan="3" class="span4 text-center text-muted"> No Messages Found</td>
-                                        </tr> --}}
+                                        </tr>
+                                    @endif
 
                                 </tbody>
                             </table>
+                        </div>
+
+                        <div class="float-right">
+                            {{ $messages->links() }}
                         </div>
                     </div>
                 </div>
@@ -75,7 +91,7 @@
 <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form class="" action="" method="post">
+            <form class="" action="{{ route('send_message') }}" method="post">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Send Message/Enquiry</h5>
@@ -88,9 +104,9 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Recipient</label>
                         <select class="form-control" required name="recipient">
-                                <option value="1"> Omer MEMES</option>
-                                <option value="2"> Omer MEMES</option>
-                                <option value="3"> Omer MEMES</option>
+                            @foreach( $users as $user )
+                                <option value="{{ $user->id }}"> {{ $user['first_name'] }}</option>
+                            @endforeach
                         </select>
 
                         <small id="recipientHelp" class="form-text text-muted">Please direct your message/enquiry to the appropriate email.</small>

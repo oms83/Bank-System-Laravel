@@ -39,27 +39,38 @@
                                             </thead>
                                             <tbody>
 
+                                                @foreach ($cardTypes as $cardType)
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>master Card</td>
-                                                        <td> <img src="https://www.mastercard.com/content/dam/public/brandcenter/assets/images/logos/mclogo-for-footer.svg" alt="master-card" class="rounded-circle" width="50" /> </td>
-                                                        <td>master-card</td>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $cardType->name }}</td>
+                                                        <td> <img src="{{ $cardType->picture }}" alt="{{ $cardType->name }}" class="rounded-circle" width="50" /> </td>
+                                                        <td>{{ $cardType->style }}</td>
                                                         <td>
-                                                            30/05/2023
+                                                            @if( !empty($cardType->created_at) )
+                                                                {{ $cardType->created_at->diffForHumans() }}
+                                                            @else
+                                                                --/--/----
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-xs btn-info edit-card-type" value="1"> <i class="fa fa-edit"></i> </button>
+                                                            <button type="button" class="btn btn-xs btn-info edit-card-type" value="{{ $loop->index }}"> <i class="fa fa-edit"></i> </button>
                                                         </td>
                                                     </tr>
-
-                                                    {{-- <tr>
+                                                @endforeach
+                                                
+                                                @if(count($cardTypes) == 0)
+                                                    <tr>
                                                         <td colspan="5" class="span4 text-center text-muted"> No Card Type Found</td>
-                                                    </tr> --}}
+                                                    </tr>
+                                                @endif
 
                                             </tbody>
                                         </table>
                                     </div>
 
+                                    <div class="float-right">
+                                            {{ $cardTypes->links() }}
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -69,13 +80,15 @@
     </div>
 </div>
      
- 
+
+
+
 
 <!-- Add CardTyp Modal -->
 <div class="modal fade" id="addCardTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
 
-        <form action="" method="POST" enctype="multipart/form-data" >
+        <form action="{{ route('save_card_type') }}" method="POST" enctype="multipart/form-data" >
             
             @csrf
 
@@ -90,11 +103,11 @@
                 
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="name" value="master-card" required />
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required />
                 </div>
                 <div class="form-group">
                         <label>Style Class</label>
-                    <input type="text" class="form-control" name="style" value="bg-master-card" required />
+                    <input type="text" class="form-control" name="style" value="{{ old('style') }}" required />
                 </div>
 
                 <div class="custom-file">
@@ -133,7 +146,7 @@
                     
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="master-card" required id="update_name"/>
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" required id="update_name"/>
                     </div>
                     <div class="form-group">
                         <label>Style Class</label>
@@ -154,4 +167,32 @@
     
         </div>
     </div>
+@endsection
+
+@section('custom-script')
+
+<script>
+
+
+var cardTypes = {!! json_encode($cardTypes->toArray(), JSON_HEX_TAG) !!};
+
+
+$(".edit-card-type").click(function(){
+
+
+    var position = $(this).val();
+    $("#editCardTypeModal").modal('toggle');
+
+    var updateRoute = route('edit_card_type', cardTypes['data'][position]['id'] );
+    $('#editCardType').attr('action', ''+updateRoute+'');
+
+
+    $("#update_name").val(cardTypes['data'][position].name);
+    $("#update_style").val(cardTypes['data'][position].style);
+ 
+});
+
+
+</script>
+
 @endsection
