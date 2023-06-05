@@ -14,7 +14,6 @@
   border-radius: 50%;
   display: inline-block;
 }  
- 
   
 </style>
 
@@ -25,10 +24,8 @@
 <div class="row">    
 
     <div class="col-md-12">
-
-        <!--Start Personal Details-->
-
         <div class="row">
+            
             <div class="col-sm-12 col-md-6 col-lg-6 p-2">
                 <div class="p-4 card">
 
@@ -86,32 +83,32 @@
                             </p>
                         </div>
                     </div>
-                </div>
 
+
+
+
+                </div>
             </div>
-            <!--End Personal Details-->
+            <div class="col-sm-12 col-md-6 col-lg-6 p-2">
+                <div class="p-4 card">
 
-        <!--Start Contact Details-->
-        <div class="col-sm-12 col-md-6 col-lg-6 p-2">
-            <div class="p-4 card">
-                
-                <h6 class="mb-4 text-muted">Contact Details</h6>
-                
-                <div class="row pl-4">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <p>
-                            Contact Phone<br/>
-                            <b>{{ $user->phone_number }}</b>
-                        </p>
+                    <h6 class="mb-4 text-muted">Contact Details</h6>
+
+                    <div class="row pl-4">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <p>
+                                Contact Phone<br/>
+                                <b>{{ $user->phone_number }}</b>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <p>
+                                Email Address<br/>
+                                <b>{{ $user->email }}</b>
+                            </p>
+                        </div>
                     </div>
-                    
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <p>
-                            Email Address<br/>
-                            <b>{{ $user->email }}</b>
-                        </p>
-                    </div>
-                </div>
 
                     <div class="row pl-4">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -121,13 +118,24 @@
                             </p>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
+
         </div>
-        <!--End Contact Details-->
     </div>
 </div>
      
+
+
+
 @endsection
 
+@section('custom-script')
+
+<script>
+
+
+</script>
+
+@endsection
