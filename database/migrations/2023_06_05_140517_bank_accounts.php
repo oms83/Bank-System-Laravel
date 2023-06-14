@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bank_accounts', function (Blueprint $table) {
             
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('number');
             $table->double('available_balance', 10, 2)->default(0.0);
             $table->double('ledger_balance', 10, 2)->default(0.0);

@@ -39,27 +39,52 @@
                                             </thead>
                                             <tbody>
 
+                                                @foreach ($bankLocations as $bankLocation)
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Turkey</td>
-                                                        <td>ziraat bankası</td>
-                                                        <td>TL</td>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $bankLocation->name }}</td>
+                                                        <td>{{ $bankLocation->bank->name }}</td>
+                                                        <td>{{ $bankLocation->currency->name }}</td>
                                                         <td>
+                                                            @if( !empty($bankLocation->created_at) )
+                                                                {{ $bankLocation->created_at->diffForHumans() }}
+                                                            @else
+                                                                --/--/----
+                                                            @endif
+                                                        </td>
+                                                        <td>
+
+                                                            @can('edit-bank-location')
+                                                                <button type="button" class="btn btn-xs btn-info edit-bank-location" value="{{ $loop->index }}"> <i class="fa fa-edit"></i> </button>
+                                                            @endcan
                                                             
-                                                                02/06/2023
-                                                        </td>
-                                                        <td>
+                                                            @if( empty($bankLocation->deleted_at) )
+                                                                @can('delete-bank-location')
+                                                                    <a href="{{ route('delete_bank_location', $bankLocation->id ) }}" class="btn btn-xs btn-danger"> <i class="fa fa-trash"></i> </a>
+                                                                @endcan
+                                                            @else
+                                                                @can('restore-bank-location')
+                                                                    <a href="{{ route('restore_bank_location', $bankLocation->id ) }}" class="btn btn-xs btn-primary"> <i class="fa fa-undo"></i> </a>
+                                                                @endcan
+                                                            @endif
 
-                                                                <button type="button" class="btn btn-xs btn-info edit-bank-location" value="1"> <i class="fa fa-edit"></i> </button>
-                                                                <a href="1" class="btn btn-xs btn-danger"> <i class="fa fa-trash"></i> </a>
-
                                                         </td>
-                                                    {{-- </tr>
+                                                    </tr>
+                                                @endforeach
+                                                
+                                                @if(count($bankLocations) == 0)
+                                                    <tr>
                                                         <td colspan="5" class="span4 text-center text-muted"> No Bank Location Found</td>
-                                                    </tr> --}}
+                                                    </tr>
+                                                @endif
+
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    <div class="float-right">
+                                            {{ $bankLocations->links() }}
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -77,10 +102,10 @@
 <div class="modal fade" id="addBankLocationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
 
-        <form action="" method="POST" >
-            @method('PUT')
+        <form action="{{ route('save_bank_location') }}" method="POST" >
+            
             @csrf
-            <input type="hidden" value="1" name="bank_id" />
+            <input type="hidden" value="{{ $bank->id }}" name="bank_id" />
 
             <div class="modal-content">
             <div class="modal-header">
@@ -93,14 +118,16 @@
                 
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="name" value="1" required />
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required />
                 </div>
                 <div class="form-group">
                     <label>Currency</label>
                     <select class="form-control" name="currency_id">
-                        <option value="1">Turkish Lira TL </option>    
-                        <option value="2">Dollar $</option>    
-                        <option value="2">Euro €</option>    
+
+                        @foreach ( $currencies as $currency )
+                            <option value="{{ $currency->id }}">{{ $currency->name }} ({{ $currency->symbol }}) </option>    
+                        @endforeach
+                        
                     </select>
                 </div>
 
@@ -135,7 +162,7 @@
                     
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="Ziraat bankasi" required id="update_name" />
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" required id="update_name" />
                     </div>
                     <div class="form-group">
                         <label>Currency</label>
@@ -158,6 +185,11 @@
 @section('custom-script')
 
 <script>
+
+
+var bankLocations = {!! json_encode($bankLocations->toArray(), JSON_HEX_TAG) !!};
+var currencies = {!! json_encode($currencies->toArray(), JSON_HEX_TAG) !!};
+
 
 $(".edit-bank-location").click(function(){
 
