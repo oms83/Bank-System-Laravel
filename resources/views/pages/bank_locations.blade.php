@@ -78,7 +78,7 @@
     <div class="modal-dialog" role="document">
 
         <form action="" method="POST" >
-            
+            @method('PUT')
             @csrf
             <input type="hidden" value="1" name="bank_id" />
 

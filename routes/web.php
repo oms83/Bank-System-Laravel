@@ -52,6 +52,13 @@ Route::get('/reset/account', static function () {
 })->name("reset_account");
 
 
+Route::post('/reset/account',[AuthController::class,'reset_account'])->name('reset_account');
+Route::get('/reset/password/setup',[AuthController::class,'reset_account'])->name('password_setup');
+Route::get('/reset/password/setup/{code}',[AuthController::class,'start_account_password']);
+
+Route::post('/set/password',[AuthController::class,'set_account_password'])->name('set_password');
+
+
 
 //SandBox Section
 Route::get('/sandbox/send/sms', static function () {

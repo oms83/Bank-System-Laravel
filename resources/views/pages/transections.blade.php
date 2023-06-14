@@ -27,26 +27,28 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-7">
                                                     <div>Bank Name.</div>
-                                                    <div class="h6">Ziraat Bankasi Turkey</div>
+                                                    <div class="h6">{{ $bankAccount->bank->name }} {{ $bankAccount->bank_location->name }}</div>
                     
                                                     <div>Account Name.</div>
-                                                    <div class="h6">65465454865456</div>
+                                                    <div class="h6">{{ $bankAccount->number }}</div>
                                                     
                                                     <div>Account No.</div>
-                                                    <div class="h6">Ziraat</div>
+                                                    <div class="h6">{{ $bankAccount->name }}</div>
                     
                                                 </div>
                                                 <div class="col-sm-12 col-md-5 text-right">
-                                                        <img src="https://www.ziraatbank.com.tr/SiteAssets/images/fb-logo.jpg" alt="" class="rounded-circle" width="50" height="50">
+                                                    @if(!empty($bankAccount->bank->picture))
+                                                        <img src="{{ $bankAccount->bank->picture }}" alt="{{ $bankAccount->bank->name }}" class="rounded-circle" width="50" height="50">
+                                                    @endif
                     
                                                     <br/>
                                                     <br/>
                     
                                                     <div>Ledger Balance.</div>
-                                                    <div class="h6 text-muted">65165</div>
+                                                    <div class="h6 text-muted">{{ $bankAccount->bank_location->currency->symbol }} {{ $bankAccount->ledger_balance }}</div>
                     
                                                     <div>Available Balance.</div>
-                                                    <div class="h6">54561</div>
+                                                    <div class="h6">{{ $bankAccount->bank_location->currency->symbol }} {{ $bankAccount->available_balance }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -67,7 +69,9 @@
                                 <div class="card-body">
 
                                     <h4 class="card-title">Transactions 
-                                        <button type="button" data-toggle="modal" data-target="#addTransactionModal" class="btn btn-primary float-right"> Add Transaction </button> 
+                                        @can('add-bank-transactions') 
+                                            <button type="button" data-toggle="modal" data-target="#addTransactionModal" class="btn btn-primary float-right"> Add Transaction </button> 
+                                        @endcan 
                                     </h4>
 
                                     <h6 class="card-subtitle">&nbsp;</h6>
@@ -87,85 +91,55 @@
                                             </thead>
                                             <tbody>
 
-                                                <tr>
-                                                    <td>
-                                                        1
-                                                    </td>
+                                                @foreach ($bankTransactions as $bankTransaction)
+                                                    <tr>
+                                                        <th scope="row">{{ $loop->iteration }}</th>
+                                                        <td>
+                                                            <div title="{{ $bankTransaction->created_at->format('l jS \\of F Y h:i:s A') }}"> 
+                                                                {{ $bankTransaction->created_at->format('d/m/Y') }}
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ $bankAccount->bank_location->currency->symbol." ".$bankTransaction->amount }}</td>
+                                                        <td>{{ $bankTransaction->transaction_code }}</td>
+                                                        <td>{{ ucfirst($bankTransaction->narration) }}</td>
+                                                        <td>
 
-                                                    <td>
-                                                        27.05.2023
-                                                    </td>
-    
-                                                    <td>$56564</td>
-                                                    
-                                                    <td>vsdv6vds</td>
-                                                    
-                                                    <td>1</td>
-                                                    
-                                                    <td>
-                                                        <span class="btn btn-sm btn-success"> <i class="mdi mdi-debug-step-into"></i> credit </span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="text-warning"> <i class="mdi mdi-clock"></i> pending </span>
-                                                    </td>
-                                                </tr>
-                                        </tbody>
-    
+                                                            @if($bankTransaction->type == "credit")
+                                                                <span class="btn btn-sm btn-success"> <i class="mdi mdi-debug-step-into"></i> {{ ucfirst($bankTransaction->type) }} </span>
+                                                            @elseif($bankTransaction->type == "debit")
+                                                                <span class="btn btn-sm btn-danger"> <i class="mdi mdi-debug-step-out"></i> {{ ucfirst($bankTransaction->type) }} </span>
+                                                            @else
 
-                                        <tbody>
+                                                            @endif
 
-                                            <tr>
-                                                <td>
-                                                    2
-                                                </td>
-                                                <td>
-                                                    27.05.2023
+                                                        </td>
+                                                        <td>
 
-                                                </td>
+                                                            @if($bankTransaction->status == "successful")
+                                                                <span class="text-success"> <i class="mdi mdi-check-all"></i> {{ ucfirst($bankTransaction->status) }} </span>
+                                                            @elseif($bankTransaction->status == "pending")
+                                                                <span class="text-warning"> <i class="mdi mdi-clock"></i> {{ ucfirst($bankTransaction->status) }} </span>
+                                                            @elseif($bankTransaction->status == "failed")
+                                                                <span class="text-danger"> <i class="mdi mdi-close"></i> {{ ucfirst($bankTransaction->status) }} </span>
+                                                            @endif
 
-                                                <td>$56564</td>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 
-                                                <td>vsdv6vds</td>
-                                                
-                                                <td>1</td>
-                                                
-                                                <td>
-                                                    <span class="btn btn-sm btn-success"> <i class="mdi mdi-debug-step-into"></i> credit </span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-danger"> <i class="mdi mdi-close"></i> feild </span>
-                                                </td>
-                                            </tr>
-                                    </tbody>
+                                                @if(count($bankTransactions) == 0)
+                                                    <tr>
+                                                        <td colspan="7" class="span4 text-center text-muted"> No Transaction Found</td>
+                                                    </tr>
+                                                @endif
 
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                3
-                                            </td>
-                                            <td>
-                                                27.05.2023
-                                            </td>
-
-                                            <td>$56564</td>
-                                            
-                                            <td>vsdv6vds</td>
-                                            
-                                            <td>1</td>
-                                            
-                                            <td>
-                                                <span class="btn btn-sm btn-danger"> <i class="mdi mdi-debug-step-out"></i> debit </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-success"> <i class="mdi mdi-check-all"></i> successfully </span>
-                                            </td>
-                                        </tr>
-                                </tbody>
-
+                                            </tbody>
                                         </table>
                                     </div>
 
+                                    <div class="float-right">
+                                            {{ $bankTransactions->links() }}
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -176,14 +150,17 @@
 </div>
     
 
+@can('add-bank-transactions')
 
-<!-- add -->
+{{-- Add The Model for the transaction adding --}}
+
+<!-- Modal -->
 <div class="modal fade" id="addTransactionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
 
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('add_bank_transaction') }}">
             @csrf
-            <input type="hidden" value="" name="bank_account_id" />
+            <input type="hidden" value="{{ $bankAccount->id }}" name="bank_account_id" />
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -279,4 +256,22 @@
 
     </div>
 </div>
+
+
+
+
+@endcan
+
+
+
+@endsection
+
+@section('custom-script')
+
+<script>
+
+     $('.collapse').collapse()
+
+</script>
+
 @endsection

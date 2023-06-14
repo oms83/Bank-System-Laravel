@@ -66,7 +66,7 @@ class BankAccountController extends Controller
             }   
 
 
-            return view('pages.transactions', compact('bankAccount', 'bankTransactions'));
+            return view('pages.transections', compact('bankAccount', 'bankTransactions'));
 
         }
 
