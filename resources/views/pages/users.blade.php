@@ -527,6 +527,17 @@ $(".editUserModal").click(function(){
 
 
 });
+
+$(".changePasswordUserModal").click(function(){
+
+    var user_id = $(this).val();
+
+    var updateRoute = route('change_password', user_id );
+    $('#changePasswordForm').attr('action', ''+updateRoute+'');
+    $('#changePasswordModal').modal('toggle');
+
+});
+
 </script>
 
 @endsection
