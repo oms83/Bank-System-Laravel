@@ -357,5 +357,6 @@
 
 
 </script>
+@routes
 
 @endsection
