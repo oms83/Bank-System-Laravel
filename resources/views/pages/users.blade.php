@@ -539,5 +539,5 @@ $(".changePasswordUserModal").click(function(){
 });
 
 </script>
-
+@routes
 @endsection
