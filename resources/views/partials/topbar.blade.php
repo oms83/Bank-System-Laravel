@@ -33,7 +33,7 @@
                     </ul>
                     <ul>
                         <li class="navbar-nav float-right">
-                            <a style="color: aliceblue" class="pt-4 text-decoration-none " href="{{route('index')}}"> Duyurular </a>
+                            <a style="color: aliceblue" class="pt-4 text-decoration-none " href="{{route('index')}}" class=""> Duyurular </a>
                         </li>
                     </ul>
                     <ul class="pt-4 navbar-nav float-right">
