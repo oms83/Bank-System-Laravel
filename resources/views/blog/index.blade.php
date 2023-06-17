@@ -18,12 +18,12 @@
 
     {{-- buraya ek bir şart eklenecek sadece "admin"  post ekleyebilir   --}}
     {{-- سيتم إضافة شرط بحيث يمكن للمسؤول فقط إضافة منشورات جديدة   --}}
-    @if (Auth::check())
+    @if (Auth::check() && Auth::user()->hasRole('System-Admin'))
+    {{-- Auth::user()->role('System-Admin') --}}
         <div class="container sm:grid gap-5 mx-auto py-20 px-5">
             <a href="{{route('blog.create')}}" class="bg-green-700 text-decoration-none  text-teal-100 py-3 px-4 rounded-lg uppercase font-bold place-self-start" >Add New Post</a>
         </div>  
     @endif
-
     @foreach ($posts as $post)
         <div class="container sm:grid grid-cols-2 gap-15 mx-auto py-20 px-5 border-b border-teal-300">
             <div>
