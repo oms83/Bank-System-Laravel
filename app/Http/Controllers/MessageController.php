@@ -25,7 +25,7 @@ class MessageController extends Controller
             $users = User::get();
         }
 
-        return view('pages.message',compact('messages','users'));
+        return view('pages.messages',compact('messages','users'));
 
     }
 
@@ -40,7 +40,7 @@ class MessageController extends Controller
                 $message->save();
             }
 
-            return view('pages.view_message',compact('message'));
+            return view('pages.view_messages',compact('message'));
 
         }
 
