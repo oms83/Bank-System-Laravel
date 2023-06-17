@@ -12,10 +12,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url('') }}/assets/images/favicon.png">
     <title>@yield('title')</title>
     {{-- {{ config('app.name') }} --}}
+
     <!-- Include styles  -->
     @include('partials.styles')
     @yield('custom-style')
     <!-- End styles -->
+
 </head>
 
 <body>
@@ -25,18 +27,23 @@
             <div class="lds-pos"></div>
         </div>
     </div>
+
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
       
+
         <!-- Topbar header - style you can find in pages.scss -->
         @include('partials.topbar')
         <!-- End Topbar header -->
       
+
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         @include('partials.sidebar')
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
        
+
         <!-- Page wrapper  -->
         <div class="page-wrapper ">
+
             <!-- Bread crumb and right sidebar toggle -->
             <div class="page-breadcrumb d-print-none">
                 <div class="row align-items-center">
@@ -59,6 +66,7 @@
             
             <!-- Container fluid  -->
             <div class="container-fluid">
+                @include('partials.alert')
                 @yield('content')
             </div>
             <!-- End Container fluid  -->
@@ -71,6 +79,8 @@
         <!-- End Page wrapper  -->
     </div>
     <!-- End Wrapper -->
+
+    
 
     <!-- All Jquery -->
 
