@@ -4,12 +4,12 @@
 
 @section('content')
 
-<div class="row">              
+<div class="row">
     <div class="col-md-12 h6">
-        
-    </div>      
+
+    </div>
     <div class="col-md-12">
-        <div class="row"> 
+        <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card" style="border-radius:10px !important">
                     <div class="accordion" id="accordionExample">
@@ -21,32 +21,32 @@
                                 </button>
                                 </h5>
                             </div>
-                        
+
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-7">
                                                     <div>Bank Name.</div>
                                                     <div class="h6">{{ $bankAccount->bank->name }} {{ $bankAccount->bank_location->name }}</div>
-                    
+
                                                     <div>Account Name.</div>
                                                     <div class="h6">{{ $bankAccount->number }}</div>
-                                                    
+
                                                     <div>Account No.</div>
                                                     <div class="h6">{{ $bankAccount->name }}</div>
-                    
+
                                                 </div>
                                                 <div class="col-sm-12 col-md-5 text-right">
                                                     @if(!empty($bankAccount->bank->picture))
                                                         <img src="{{ $bankAccount->bank->picture }}" alt="{{ $bankAccount->bank->name }}" class="rounded-circle" width="50" height="50">
                                                     @endif
-                    
+
                                                     <br/>
                                                     <br/>
-                    
+
                                                     <div>Ledger Balance.</div>
                                                     <div class="h6 text-muted">{{ $bankAccount->bank_location->currency->symbol }} {{ $bankAccount->ledger_balance }}</div>
-                    
+
                                                     <div>Available Balance.</div>
                                                     <div class="h6">{{ $bankAccount->bank_location->currency->symbol }} {{ $bankAccount->available_balance }}</div>
                                                 </div>
@@ -59,23 +59,23 @@
             </div>
         </div>
 
-        <div class="row"> 
+        <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card" style="border-radius:10px !important">
                     {{-- Transaction Table --}}
-                    
+
                     <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Transactions 
-                                        @can('add-bank-transactions') 
-                                            <button type="button" data-toggle="modal" data-target="#addTransactionModal" class="btn btn-primary float-right"> Add Transaction </button> 
-                                        @endcan 
+                                    <h4 class="card-title">Transactions
+                                        @can('add-bank-transactions')
+                                            <button type="button" data-toggle="modal" data-target="#addTransactionModal" class="btn btn-primary float-right"> Add Transaction </button>
+                                        @endcan
                                     </h4>
 
                                     <h6 class="card-subtitle">&nbsp;</h6>
-                                
+
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <thead>
@@ -95,11 +95,13 @@
                                                     <tr>
                                                         <th scope="row">{{ $loop->iteration }}</th>
                                                         <td>
-                                                            <div title="{{ $bankTransaction->created_at->format('l jS \\of F Y h:i:s A') }}"> 
+                                                            <div title="{{ $bankTransaction->created_at->format('l jS \\of F Y h:i:s A') }}">
                                                                 {{ $bankTransaction->created_at->format('d/m/Y') }}
                                                             </div>
                                                         </td>
                                                         <td>{{ $bankAccount->bank_location->currency->symbol." ".$bankTransaction->amount }}</td>
+
+
                                                         <td>{{ $bankTransaction->transaction_code }}</td>
                                                         <td>{{ ucfirst($bankTransaction->narration) }}</td>
                                                         <td>
@@ -126,7 +128,7 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-                                                
+
                                                 @if(count($bankTransactions) == 0)
                                                     <tr>
                                                         <td colspan="7" class="span4 text-center text-muted"> No Transaction Found</td>
@@ -148,7 +150,7 @@
         </div>
     </div>
 </div>
-    
+
 
 @can('add-bank-transactions')
 
@@ -170,7 +172,7 @@
                     </button>
                 </div>
                 <div class="modal-body p-5">
-                
+
                     <div class="form-group">
                         <label for="transactionCodeInput">Transaction Code</label>
                         <input type="text" class="form-control" id="transactionCodeInput" aria-describedby="transactionCodeInputHelp" name="transaction_code" required />
@@ -243,7 +245,7 @@
                         </label>
                     </div>
 
-                    
+
 
                 </div>
                 <div class="modal-footer">

@@ -3,62 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    //
+
+    function index(Request $request)
     {
-        return view('pages.settings');
+        //return $request;
+        $setting = Setting::where('user_id', Auth::id())->first();
+        if (empty($setting)) {
+            $setting = new Setting();
+            $setting->user_id = Auth::id();
+            $setting->save();
+        }
+        return view('pages.settings', compact('setting'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    function update(Request $request)
     {
-        //
+
+
+        $setting = Setting::where('user_id', Auth::id())->first();
+        if ($request->sms_notification == "on") {
+            $setting->sms_notification = 1;
+        } else {
+            $setting->sms_notification = 0;
+        }
+
+        if ($request->email_notification == "on") {
+            $setting->email_notification = 1;
+        } else {
+            $setting->email_notification = 0;
+        }
+
+        if ($request->monthly_notification == "on") {
+            $setting->monthly_notification = 1;
+        } else {
+            $setting->monthly_notification = 0;
+        }
+
+        $setting->save();
+
+        return redirect()->route('settings')->with('success', 'Account Settings Updated Successfully.');
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

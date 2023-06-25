@@ -4,24 +4,24 @@
 
 @section('content')
 
-<div class="row">              
+<div class="row">
     <div class="col-md-12 h6">
-        
-    </div>      
+
+    </div>
     <div class="col-md-12">
 
-        <div class="row"> 
+        <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card" style="border-radius:10px !important">
                     {{-- Transaction Table --}}
-                    
+
                     <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Bank Account Transactions</h4>
                                     <h6 class="card-subtitle">All Bank Account Transaction Would Appear Here</h6>
                                     <pre></pre>
-                                
+
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <thead>
@@ -43,7 +43,7 @@
                                                     <tr>
                                                         <th scope="row">{{ $loop->iteration }}</th>
                                                         <td>
-                                                            <div title="{{ $bankTransaction->created_at->format('l jS \\of F Y h:i:s A') }}"> 
+                                                            <div title="{{ $bankTransaction->created_at->format('l jS \\of F Y h:i:s A') }}">
                                                                 {{ $bankTransaction->created_at->format('d/m/Y') }}
                                                             </div>
                                                         </td>
@@ -76,7 +76,7 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-                                                
+
                                                 @if(count($bankTransactions) == 0)
                                                     <tr>
                                                         <td colspan="7" class="span4 text-center text-muted"> No Transaction Found</td>
@@ -98,7 +98,7 @@
         </div>
     </div>
 </div>
-     
+
 
 @endsection
 

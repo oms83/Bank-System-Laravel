@@ -65,7 +65,7 @@ class UsersTableSeeder extends Seeder
                 'id' => 3,
                 'picture' => 'https://cdn1.iconfinder.com/data/icons/bokbokstars-121-classic-stock-icons-1/512/person-man.png',
                 'first_name' => 'Shafiullah',
-                'middle_name' => 'Mohammed Dawod',
+                'middle_name' => 'Mohammed Dawood',
                 'last_name' => 'Mansori',
                 'email' => 'shafiullah1@gmail.com',
                 'alt_email' => 'shafiullah2@gmail.com',
